@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h2>
+    Question {{ question_number }}
+</h2>
+
+<div style="margin-bottom:20px;">
+    <progress value="{{ question_number }}" max="{{ session.questions|length }}"></progress>
+</div>
+    <h3>{{ question.question }}</h3>
+
+{% if question.code %}
+
+<pre>
+<code>
+{{ question.code }}
+</code>
+</pre>
+
+{% endif %}
+
+    <form method="POST">
+
+        {% for key, value in question.options.items() %}
+
+        <div class="option">
+            <input
+                type="radio"
+                name="answer"
+                value="{{ key }}"
+                required
+            >
+
+            {{ key }}. {{ value }}
+
+        </div>
+
+        {% endfor %}
+
+        <button type="submit">
+            Next Question
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Result</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="score-card">
+
+    <h1>Quiz Result</h1>
+
+    <h2>{{ score }}/{{ total }}</h2>
+
+    <h3>{{ percentage }}%</h3>
+
+    <p>{{ message }}</p>
+
+</div>
+
+    <a href="/" >
+        <button type="button">
+            Take Another Quiz
+        </button>
+    </a>
+</div>
+    </a>
+
+    <hr>
+    <br> <br>
+
+    <h2>Question Review</h2>
+
+    {% for item in review %}
+
+    <div class="review-card">
+
+        <h3>{{ loop.index }}. {{ item.question }}</h3>
+
+        {% if item.code %}
+        <pre><code>{{ item.code }}</code></pre>
+        {% endif %}
+
+        {% if item.is_correct %}
+            <p class="correct">
+                Correct
+            </p>
+        {% else %}
+            <p class="incorrect">
+                Incorrect
+            </p>
+        {% endif %}
+
+        <p>
+            <strong>Your Answer:</strong>
+            {{ item.user_answer }}
+        </p>
+
+        <p>
+            <strong>Correct Answer:</strong>
+            {{ item.correct_answer }}
+        </p>
+
+        <p>
+            <strong>Explanation:</strong>
+            {{ item.explanation }}
+        </p>
+
+        <hr>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+</body>
+</html>
